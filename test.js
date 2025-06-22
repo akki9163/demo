@@ -1,1 +1,4 @@
-console.log("hello world v2")
+let msg="hello"
+console.log(msg.length)
+console.log(msg.toUpperCase())
+console.log(msg.toLowerCase())
