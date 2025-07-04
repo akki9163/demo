@@ -2,8 +2,7 @@ pipeline {
     agent any
 
    environment{
-       Docker_image='Node-app'
-       Docker_user=credentials('docker-hub')
+           DOCKERHUB_CREDENTIALS = credentials('docker-hub')
    }
    stages{
 		stage('git_clone'){
@@ -14,17 +13,17 @@ pipeline {
 
 		stage('docker image building'){
 			steps{
-				sh 'docker build -t $Docker_image:latest' 
+				sh 'docker build -t akki9163/node:$BUILD_NUMBER .' 
 			}
 		}
 		stage('docker hub'){
 			steps{
-				sh 'echo $Docker_user_pass | docker login -u $Docker_user_usr --password-stdin'
+				sh 'echo $DOCKERHUB_CREDENTIALS_pass | docker login -u $DOCKERHUB_CREDENTIALS_usr --password-stdin'
 			}
 		}
 	   stage('docker push'){
 			steps{
-				sh 'docker push akki9163/$Docker_image:latest'
+				sh 'docker push akki9163/node:$BUILD_NUMBER'
 			}
 		}
 	}
