@@ -13,7 +13,7 @@ pipeline {
 
 		stage('docker image building'){
 			steps{
-				sh 'docker build -t akki9163/node:$BUILD_NUMBER .' 
+				sh 'docker build -t akki9163/test:$BUILD_NUMBER .' 
 			}
 		}
 		stage('docker hub'){
@@ -23,7 +23,7 @@ pipeline {
 		}
 	   stage('docker push'){
 			steps{
-				sh 'docker push akki9163/node:$BUILD_NUMBER'
+				sh 'docker push akki9163/test:$BUILD_NUMBER'
 			}
 		}
 	}
